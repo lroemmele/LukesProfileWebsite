@@ -1,25 +1,22 @@
-import {combineReducers, createStore, applyMiddleware } from 'redux';
+import {combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 
 import {testReducer} from '../reducers';
 
+const enhancers = compose(
+     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+ );
+
+ const reducers = combineReducers({
+      testReducer: testReducer
+ });
 
 let store = null;
 export default {
 
-     //creat a store and returns store
      createStore: ()=>{
-          console.log('in createstore');
-          //combines reducers
-          const reducers = combineReducers({
-               test: testReducer
-          })
-          console.log('after combinereducers');
-          //creates store using reducers
-
-          //console.log(store.state.tests);
-          store = createStore(reducers, applyMiddleware(thunk));
-          console.log('after store create');
+          store = createStore(reducers, applyMiddleware(thunk, logger), enhancers);
           return store;
      },
 

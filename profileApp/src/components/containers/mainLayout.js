@@ -1,21 +1,18 @@
 import React, {Component} from 'react';
-
-//used to connect to redux store
 import { connect } from 'react-redux';
+import actions from '../../actions';
 
 class Home extends Component{
      constructor(){
           super();
      }
 
-
      render(){
-          const list = this.props.test.tests;
+          const list = this.props.mainLayoutProps.tests;
 
-          console.log("in home componet");
           return(
-               <div id="test">
-                    *<ul>
+               <div>
+                    <ul>
                          {list.map((item, i)=>{
                               return <li key={i}>{item.name}</li>
                          })}
@@ -26,15 +23,15 @@ class Home extends Component{
 }
 
 //connects to the redux store
-const stateToProps =(state) =>{
+const stateToProps = (state) =>{
      return {
-          test: state.test
+          mainLayoutProps: state.testReducer
      }
 }
 
 const dispatchToProps = (dispatch) =>{
      return {
-
+          createTest: ()=> dispatch (actions.createTest())
      }
 }
 

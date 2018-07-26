@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-
-//Adds redux to react app
 import {Provider} from 'react-redux';
 import store from './store';
 
-import Home from './home';
+import Home from './components/containers/mainLayout';
 
 
 const app =(
