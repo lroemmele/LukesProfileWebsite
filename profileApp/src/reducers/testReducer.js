@@ -14,6 +14,7 @@ export default (state = initialState, action)=>{
                return state;
 
           default:
+               console.log('default state called');
                return state;
      }
 }
